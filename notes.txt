@@ -1,0 +1,247 @@
+Jquery React angular vuejs electron nextjs extjs 
+
+libraries or framwoers
+
+React is a lib 
+Anglar is a framework  - in itself so many lobrarie so
+servives http animation testing 
+
+axios redux 
+Angular says if u have to something if u creating a componnet u have to register first 
+install a module import a module and then use it 
+
+
+
+create a component and use it 
+install and modules and use it 
+
+All of these are javascript 
+Ecma script  - - specification where all the keywords are mentione dthat how to use js 
+
+for example a specification that to declare a varibale var 
+
+Browsers and nodejs work on which version of ES --- veriosn 5 
+
+version 6 (partially )
+
+some of words are allowed and ome are not 
+
+we need to conver es6 into es5 that
+
+converting es6 into es5 is known as transpilling 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Vraibales and data 
+datatypes 
+js takes care of datatype 
+Dynamic 
+variables are which will store data 
+
+var variable_name =  value 
+var x = 10
+
+name  = "Nishi"
+
+
+x =  ["ashu", 10]
+x =  {}   // object 
+
+what is an object data structure key value pairs seperated via comma
+
+var user = {
+    name:"Ashu",
+    role:"trainer",
+    id:343234,
+    phone:3435345,
+    email:"ashu.lekhi",
+    phone:4239493
+}
+
+object.keyname
+
+user.phone
+
+var xy =  function(){}
+xy =90
+
+function xyzpqr(){
+
+}
+
+>>>>>>>>>>> Scopes >>>>>>>>>>>>>>>>>>
+
+local/functional and global 
+everywhere 
+local only inside functions 
+
+what happens in vegas stays inside vegas 
+what happens in functions stays inside functions 
+
+block level scoping 
+
+
+var x  // declaration 
+x = 10 // definition 
+
+var y =20
+
+ONLY  THE DECLARARTION PART IS TAKEN TO THE TOP is known as varibale Hoisting  
+
+
+because of delaration of local variable we will never access the global 
+
+
+if we do not have local declaration then we will access global
+
+// no function overloading 
+// only one the later one 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Day 2  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// in javasctript we have a term known as context of execution 
+
+which is where is a function is called or called by 
+
+this function defined isnisde timeout(function) is called by timeout method whoch belong to some other class so this will take the valeu of context of ececution 
+
+in order to preserve the scope of this operator we use arror functions 
+
+
+
+let square = function(num){
+    return num*num
+}
+
+let sq = (num)=>{num*num}
+
+people say arrow functions are to reduce lines of code 
+
+but no arrow functions are used to preserver the scope of this operaotr 
+
+
+
+// one time installation of CRA (create-react-app)
+
+
+// npx create-react-app projectname
+
+// cd projectname
+
+// npm start
+
+
+//  static and not static resources 
+
+index.html is refereing two images image src=""
+which i am serving using http server and if two images are kept in a folder can i access those 2 images in index.html 
+
+package lock is mantinained by package.json to get veriosn history 
+
+var name = "ashu"  js
+<label>Ashu</label>  html tags
+
+
+html in js file it is known as jsx 
+javascrript xml
+
+ashu calls js extension becuase it extending the powers of js to understand html tags also this is only possible in react 
+
+var button  = <button>Login</button>
+
+
+what is a component ??? what ever u see 
+component is a view 
+
+technically a component is html returned by a function 
+
+
+// Steps to use a component 
+// 1) create a component 
+// 2 export a component 
+3) import and use it in capital casing 
+
+<button> vs <button> , thats why all the user defined components are capitals 
+
+
+jsx restrictions 
+
+are tags must be closed 
+style = "height:10px ; width:100%"
+style  = {{height:"20px", width:"100%", backgroundColor:""}}
+
+
+props is an object in which values can be passed in tag in below syntax
+<ComponnenName prop1="value1" prop2="value2" propn="value2" />
+Props is an obect in which data can be passed from parent to child component
+
+
+in functional components once data is shown to UI it cant be updated on the screen
+
+
+For that we have STATE 
+
+what is STATE .. STATE is an object which contains data to be shown to UI which can be updated 
+
+Step 1
+// create the state / initialise the state
+
+
+Step 2 )
+ Update the state by calling a function setState() whwenver required to change the value of the data shown in UI
+
+
+ setState does not replace/overrides the state object it merges the state object
+ if any key is updating it will update the value of that key 
+
+
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Day 3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ 2 types of components 
+ Stateless   - functional components
+ Statefull   - class based 
+
+ State full component is the one which can access state features state object and lifecycle methods 
+ Another is life cycle methods . From construction  of component to destrcution of a component 
+
+ it goe through several phases it is mounted it receive props it gets updates unmount 
+
+ constructor 
+ render
+ cmponendDidMount()  is called when rndering it successfully completed because it may happen that component started to come on screen but any other component inside that was not correct 
+ componentDidUpdate()
+ componentEillUnmount()
+
+
+ Pure Component is the component which only rerenders if the state value is getting changed not if setSTate() is called everytime 
+ Component rerenders everytime on setSTate() even if the value of state is same
+ 
+
+
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> React HOOKS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ React hooks are the ones which provided us statefull features in functional component 
+ What is Reach hooks . Are functions 
+
+ useSTate()
+
+ useState is a react hook which gives state to functional component 
+
+ let [stateproperty, hanlerof stateproperty] = useSTate()
+
+ in class this.state = {}
+ this.setState({erromessage:"Invalid Credentials})
+
+ let [errormessage,setErrormessage] = useState(undefined)
+ setErrormessage("Invalid credentials)
+
+ I dont give a damn on uodate . We only to want to implement didmount but not didupdate
+
+ useEffect(()=>{},[]) this array is known as list of depencies on which we have to watch for the changes 
+
+ [] blank array means we are not looking for change in any property
+
+ [name] means it is looking for change in the property name
+
+ without Array [] called on every update 
+ with blank array will not be called on any update setErrormessage
+ array with some value it will be onlu called on change of those values 
