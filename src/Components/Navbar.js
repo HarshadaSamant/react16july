@@ -1,5 +1,5 @@
 import {useState , useEffect} from "react"
-
+import { Link, withRouter } from 'react-router-dom';
 
 
 export function Navbar(){
@@ -34,10 +34,13 @@ export function Navbar(){
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <Link class="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <Link class="nav-link" to="/login">Login</Link>
+        </li>
+        <li class="nav-item">
+          <Link class="nav-link" to="/signup">Signup</Link>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,9 +52,6 @@ export function Navbar(){
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -72,3 +72,4 @@ export function Navbar(){
 }
 
 
+export default withRouter(Navbar)

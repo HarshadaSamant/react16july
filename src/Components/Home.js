@@ -1,6 +1,7 @@
 import Carousel from "./Carousel";
 
-function Home() {
+function Home(props) {
+    console.log("Props are: " + props);
     return(
         <div>
             <Carousel />
