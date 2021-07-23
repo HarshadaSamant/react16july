@@ -1,5 +1,6 @@
-import {Component, PureComponent} from "react"
-import Loader from "react-loader-spinner"
+import {Component, PureComponent} from "react";
+import Loader from "react-loader-spinner";
+import axios from "axios";
 
 
 class Signup extends PureComponent{
@@ -26,10 +27,21 @@ class Signup extends PureComponent{
       }
     signup = (event)=>{
        // updating the state
-        this.setState({
-            loading:98
-        })
-       console.log("......................" , this.user) 
+    //     this.setState({
+    //         loading:98
+    //     })
+    //    console.log("......................" , this.user) 
+
+    let apiurl = "https://apifromashu.herokuapp.com/api/register"
+    axios({
+        method:"post",
+        url: apiurl,
+        data: this.user
+    }).then((response) => {
+        console.log("response from signup api", response)
+    }, (error) => {
+        console.log("error from signup api", error)
+    })
        event.preventDefault()
     }
 

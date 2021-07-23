@@ -9,6 +9,7 @@ import Loader from 'react-loader-spinner';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Pagenotfound from './Components/Pagenotfound';
 import Home from './Components/Home';
+import Cakedetails from './Components/Cakedetails';
 
 
 let cake = {
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/Cakedetails" component={Cakedetails} />
         <Route exact path="**" component={Pagenotfound} />
       </Switch>
 
