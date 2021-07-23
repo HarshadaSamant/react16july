@@ -1,4 +1,5 @@
 function Cakedetails() {
+
     return(
         <div className="cake-details" style={{backgroundColor:"#FFEBC9", height:"100vh"}}>
             <div style={{display:"flex", justifyContent:"center", alignItems:"center", height: "100%", padding: "40px 0"}}>

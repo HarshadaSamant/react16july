@@ -1,7 +1,10 @@
 import {Component} from "react"
+import { Link  , withRouter} from "react-router-dom"
 import axios from "axios"
 
 class Login extends Component{
+    
+
     constructor(){
         super()
         // initialising the state
@@ -24,14 +27,20 @@ class Login extends Component{
             url: apiurl,
             data: this.user
         }).then((response) => {
-            console.log("response from login api", response)
+            console.log("response from login api", response);
+            if(response.data.token) {
+                this.props.loggedIn();
+                localStorage.token = response.data.token;
+                this.props.history.push("/");
+            } else {
+                alert("Invalid credentials");
+            }
         }, (error) => {
             console.log("error from login api", error)
         })
         console.log("User name: ", this.user)
        event.preventDefault()
     }
-
 
     forget = (event)=>{
         let apiurl = "https://apifromashu.herokuapp.com/api/recoverpassword"
@@ -64,7 +73,7 @@ class Login extends Component{
                     </div>
                     <div>
                         <label className="errormessage">{this.state.errorMessage}</label>
-                        <button style={{float:"right"}} onClick={this.login} type="submit" class="btn btn-primary">Submit</button>
+                        <button style={{float:"right"}} onClick={this.login} type="submit"  class="btn btn-primary">Submit</button>
                         <div style={{width: "100%", display: "flex", justifyContent: "flex-end", color: "blue", margin: "20px 0"}}>
                             <a style={{float:"right"}} onClick={this.forget} type="submit" className="btn btn-link">Forget password</a>
                         </div>
@@ -75,4 +84,4 @@ class Login extends Component{
     }
 }
 
-export default Login
+export default withRouter(Login)

@@ -2,7 +2,7 @@ import Carousel from "./Carousel";
 import Card from "./Card";
 
 function Home(props) {
-    console.log("Props are: " + props);
+    console.log("Props in home are: " + JSON.stringify(props));
     return(
         <div>
             <Carousel />
@@ -10,6 +10,9 @@ function Home(props) {
                 Cakes for all occasions
             </h1>
             <Card />
+            <Card />
+            <Card />
+            
         </div>
     )
 }

@@ -5,11 +5,13 @@ import Carousel from "./Components/Carousel"
 import Cake from './Components/Cake';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import Cart from './Components/Cart';
 import Loader from 'react-loader-spinner';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Pagenotfound from './Components/Pagenotfound';
 import Home from './Components/Home';
 import Cakedetails from './Components/Cakedetails';
+import { useState } from 'react';
 
 
 let cake = {
@@ -23,7 +25,18 @@ let cake2 = {
   price:800,
   image:"https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGluayUyMGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
 }
+
+
+
 function App() {
+  var [isUserLoggedIn, setUserLoggedIn] = useState(localStorage.token ? true : false);
+  function loggedIn() {
+    setUserLoggedIn(true);
+  }
+  function loggedOut() {
+    setUserLoggedIn(false);
+  }
+
   return (
     <div>
      {/* <Navbar ></Navbar>
@@ -36,11 +49,12 @@ function App() {
      </div>
      <Login /> */}
      <BrowserRouter>
-      <Navbar />
+      <Navbar isUserLoggedIn={isUserLoggedIn} loggedOut={loggedOut} />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={Login} ><Login loggedIn={loggedIn} /></Route>
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/Cakedetails" component={Cakedetails} />
         <Route exact path="**" component={Pagenotfound} />
       </Switch>

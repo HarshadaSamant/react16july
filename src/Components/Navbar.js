@@ -1,8 +1,9 @@
 import {useState , useEffect} from "react"
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 
 
-export function Navbar(){
+export function Navbar(props){
+    console.log("props in nav are : ", JSON.stringify(props));
     var [title, setTitle] = useState("Cake Gallery")
     var [user, setUser] = useState({name:"Harshada", id:12345 , role:"Developer" , experience:"3 years" , salary:"Chindi"})
 
@@ -19,9 +20,15 @@ export function Navbar(){
     }, [title])
 
     function demo(event){
-        event.preventDefault()
+      event.preventDefault()
       var value = document.getElementById('searchinput').value
       setTitle(value)
+    }
+
+    var logout = (event) => {
+      // event.preventDefault();
+      props.loggedOut();
+      localStorage.clear();
     }
   
    return (
@@ -36,23 +43,6 @@ export function Navbar(){
         <li class="nav-item active">
           <Link class="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>
         </li>
-        <li class="nav-item">
-          <Link class="nav-link" to="/login">Login</Link>
-        </li>
-        <li class="nav-item">
-          <Link class="nav-link" to="/signup">Signup</Link>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input onChange={demo} value={title} id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
@@ -63,7 +53,22 @@ export function Navbar(){
         <input onChange={demo} value={user.experience} id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
        
         <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
       </form>
+
+      {!props.isUserLoggedIn && <form><span class="nav-item">
+          <Link class="nav-link" to="/login">Login</Link>
+        </span>
+        <span class="nav-item">
+          <Link class="nav-link" to="/signup">Signup</Link>
+        </span> </form>}
+
+        {props.isUserLoggedIn && <form><span class="nav-item">
+          <Link class="nav-link" to="/cart">Cart</Link>
+        </span>
+        <span class="nav-item">
+          <Link class="nav-link" onClick={logout} to="/">Logout</Link>
+        </span> </form>}
 
     </div>
   </nav>
