@@ -13,6 +13,7 @@ import Home from './Components/Home';
 import Cakedetails from './Components/Cakedetails';
 import { useState } from 'react';
 
+// As redux is a standalone library we need to just import it to use it.
 import "./ReduxStore/Store";
 
 
