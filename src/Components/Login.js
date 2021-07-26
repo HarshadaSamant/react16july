@@ -21,7 +21,7 @@ class Login extends Component{
          this.user.password = event.target.value
        }
     login = (event)=>{
-        let apiurl = "https://apifromashu.herokuapp.com/api/login"
+        let apiurl =  "https://apifromashu.herokuapp.com/api/login"
         axios({
             method:"post",
             url: apiurl,
@@ -62,18 +62,18 @@ class Login extends Component{
             <div style={{width:"50%" , margin:"auto"}}>
                 <form>
                     <h1>Login Here</h1>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input onChange={this.handleEmail} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input onChange={this.handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input onChange={this.handlePassword} type="password" class="form-control"  placeholder="Password" />
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input onChange={this.handlePassword} type="password" className="form-control"  placeholder="Password" />
                     </div>
                     <div>
                         <label className="errormessage">{this.state.errorMessage}</label>
-                        <button style={{float:"right"}} onClick={this.login} type="submit"  class="btn btn-primary">Submit</button>
+                        <button style={{float:"right"}} onClick={this.login} type="submit"  className="btn btn-primary">Submit</button>
                         <div style={{width: "100%", display: "flex", justifyContent: "flex-end", color: "blue", margin: "20px 0"}}>
                             <a style={{float:"right"}} onClick={this.forget} type="submit" className="btn btn-link">Forget password</a>
                         </div>

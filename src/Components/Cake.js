@@ -1,15 +1,53 @@
+import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Cake(props){
-    console.log("..............." , props)
-    return (
-        <div class="card col-3" style={{width: "14rem"}}>
-            <img style={{height:"18rem"}} src={props.data.image} class="card-img-top" alt="..." />
-             <div class="card-body">
-                <h5 class="card-title">{props.data.name}</h5>
-                <p className="card-text">{props.data.price}</p>
+function Cake(props) {
+    const notify = () => toast.warn('Please login or register to view details', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+
+    let showDetails = (event) => {
+        event.preventDefault();
+        if(!localStorage.token) {
+            // alert("Please login or register to view details")
+            notify();
+            
+        } else {
+            props.history.push("/cake/"+ props.data.cakeid)
+        }
+    }
+
+    return(
+        
+        <div className="col">
+            <ToastContainer position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover/>
+
+            <div className="card" style={{width: 300}}>
+                <img src={props.data.image} className="card-img-top" alt="..."/>
+                <div className="card-body">
+                    <h5 className="card-title">{props.data.name}</h5>
+                    <p className="card-text">{props.data.price}</p>
+                    <button onClick={showDetails} className="btn btn-primary">Show details</button>
+                </div>
             </div>
-        </div>
+         </div>
     )
 }
 
-export default Cake
+export default withRouter(Cake);

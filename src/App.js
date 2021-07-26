@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Navbar} from "./Components/Navbar"
+import Navbar from "./Components/Navbar"
 import Carousel from "./Components/Carousel"
 import Cake from './Components/Cake';
 import Login from './Components/Login';
@@ -12,6 +12,8 @@ import Pagenotfound from './Components/Pagenotfound';
 import Home from './Components/Home';
 import Cakedetails from './Components/Cakedetails';
 import { useState } from 'react';
+
+import "./ReduxStore/Store";
 
 
 let cake = {
@@ -29,25 +31,21 @@ let cake2 = {
 
 
 function App() {
+  const[isAutheticated, setisAutheticated] = useState(false);
   var [isUserLoggedIn, setUserLoggedIn] = useState(localStorage.token ? true : false);
+
   function loggedIn() {
+    setisAutheticated(true);
     setUserLoggedIn(true);
   }
   function loggedOut() {
+    setisAutheticated(false);
     setUserLoggedIn(false);
   }
 
   return (
     <div>
-     {/* <Navbar ></Navbar>
     
-     <Signup />
-     <Carousel />
-     <div className="row">
-     <Cake data={cake} />
-     <Cake data={cake2} />
-     </div>
-     <Login /> */}
      <BrowserRouter>
       <Navbar isUserLoggedIn={isUserLoggedIn} loggedOut={loggedOut} />
       <Switch>
@@ -55,8 +53,9 @@ function App() {
         <Route exact path="/login" component={Login} ><Login loggedIn={loggedIn} /></Route>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/cart" component={Cart} />
-        <Route exact path="/Cakedetails" component={Cakedetails} />
+        <Route exact path="/cake/:cakeid" component ={Cakedetails} />
         <Route exact path="**" component={Pagenotfound} />
+        {/* <GuardedRoute exact path='/cart' component={Cart} auth {...isAutheticated} /> */}
       </Switch>
 
      </BrowserRouter>
