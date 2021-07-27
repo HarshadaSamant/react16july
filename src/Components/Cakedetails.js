@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from '../Components/Spinner/Spinner';
+import Ratings from "./Ratings";
 
 function Cakedetails(props) {
     var [cakeDetails, setCakeDetails] = useState({});
@@ -33,15 +34,15 @@ function Cakedetails(props) {
 
 
     return(
-        <div className="cake-details" style={{backgroundColor:"#FFEBC9", height:"100vh"}}>
+        <div className="cake-details" style={{height:"100vh"}}>
             {loader ? <Spinner /> : '' }
-        <div style={{display:"flex", justifyContent:"center", alignItems:"center", height: "100%", padding: "40px 0"}}>
+        <div style={{backgroundColor:"#FFEBC9", display:"flex", justifyContent:"center", alignItems:"center", padding: "40px 0"}}>
             <div className="details-wrapper" style={{width: "50%"}}>
-                <div className="image-wrapper" style={{width: "70%", margin: "auto"}}>
+                <div className="image-wrapper" style={{width: "70%", margin: "20px auto"}}>
                     <img style={{width: "100%", height: "auto"}} src={cakeDetails.image} />
                 </div>
                 <div className="ingredients-wrapper" style={{margin: "40px"}}>
-                    <ul style={{backgroundColor:"#FDF6F0", display: "flex", flexWrap: "wrap"}}>
+                    <ul style={{backgroundColor:"#FDF6F0", display: "flex", flexWrap: "wrap", margin: "0 !important", listStylePosition: "inside"}}>
                         {ingredients.map((each, index) => {
                             return <li key={index} data={each} style={{width: "40%", margin: "10px", fontSize: "18px"}}>{ingredients[index]}</li>
                         })}
@@ -51,35 +52,8 @@ function Cakedetails(props) {
             </div>
             <div className="details-wrapper" style={{width: "50%", textAlign: "center"}}>
             <h1>{cakeDetails.name}</h1>
-            <form className="rating-widget">
-<input type="checkbox" className="star-input" id="1"/>
-<label className="star-input-label" htmlFor="1">1
-<i className="fa fa-star"></i>
-<i className="fa fa-star orange"></i>
-</label>
-<input type="checkbox" className="star-input" id="2"/>
-<label className="star-input-label" htmlFor="2">2
-<i className="fa fa-star"></i>
-<i className="fa fa-star orange"></i>
-</label>
-<input type="checkbox" className="star-input" id="3"/>
-<label className="star-input-label" htmlFor="3">3
-<i className="fa fa-star"></i>
-<i className="fa fa-star orange"></i>
-</label>
-<input type="checkbox" className="star-input" id="4"/>
-<label className="star-input-label" htmlFor="4">4
-<i className="fa fa-star"></i>
-<i className="fa fa-star orange"></i>
-</label>
-<input type="checkbox" className="star-input" id="5"/>
-<label className="star-input-label" htmlFor="5">5
-<i className="fa fa-star"></i>
-<i className="fa fa-star orange"></i>
-</label>
-
-</form>
-<span>{cakeDetails.ratings}</span>
+            <Ratings value={cakeDetails.ratings}/>
+            <span>{cakeDetails.ratings}</span>
             <div><span>{cakeDetails.reviews}</span> reviews</div>
             <div className="description">
                 <p>{cakeDetails.description}</p>
