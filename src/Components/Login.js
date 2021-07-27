@@ -1,6 +1,7 @@
 import {Component} from "react"
 import { Link  , withRouter} from "react-router-dom"
 import axios from "axios"
+import { connect } from "react-redux"
 
 class Login extends Component{
     
@@ -29,7 +30,10 @@ class Login extends Component{
         }).then((response) => {
             console.log("response from login api", response);
             if(response.data.token) {
-                this.props.loggedIn();
+                this.props.dispatch({
+                    type: "Login",
+                    payload: response.data
+                })
                 localStorage.token = response.data.token;
                 this.props.history.push("/");
             } else {
@@ -84,4 +88,5 @@ class Login extends Component{
     }
 }
 
-export default withRouter(Login)
+Login = withRouter(Login)
+export default connect() (Login)

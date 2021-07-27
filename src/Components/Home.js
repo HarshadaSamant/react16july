@@ -3,7 +3,8 @@ import Cake from "./Cake";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from '../Components/Spinner/Spinner';
-
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 function Home(props) {
     
@@ -13,22 +14,32 @@ function Home(props) {
     var [cakes, setCakes] = useState([])
     var [loader, setLoader] = useState(false);
 
+    
+    
     useEffect(() => {
         setLoader(true)
         let apiurl = process.env.REACT_APP_BASE_API + "/allcakes";
 
-        axios({
-            method: 'get',
-            url: apiurl
-        }).then((response) => {
-            console.log("response from all cakes api : " , response.data)
-            setCakes(response.data.data)
-            setLoader(false)
-        }, (error) => {
-            console.log("error from all cakes api : ", error)
-            setLoader(false)
-        })
-    }, [])
+            axios({
+                method: 'get',
+                url: apiurl
+            }).then((response) => {
+                console.log("response from all cakes api : " , response.data)
+                props.dispatch({
+                    type: "ApiLoaded"
+                })
+                {props.cakesLoaded &&
+                alert("cake loaded")
+                setCakes(response.data.data)
+                }
+                setLoader(false)
+            }, (error) => {
+                console.log("error from all cakes api : ", error)
+                setLoader(false)
+            })
+        
+        }, [])
+    
 
     return(
         <div>
@@ -49,4 +60,9 @@ function Home(props) {
     )
 }
 
-export default Home;
+Home = withRouter(Home)
+export default connect(function(state, props) {
+    return{
+        cakesLoaded: state["ApiLoad"]["isApiLoaded"]
+    }
+})(Home);

@@ -1,5 +1,27 @@
 // reducers are pure function who are responsible for updating store 
 
+export var AuthReducer = function(state = {isUserLoggedIn: localStorage.token ? true : false}, action) {
+    switch (action.type) {
+        case "Login":
+            state = {...state}
+            state["isUserLoggedIn"] = true
+            state["user"] = action.payload
+            return state;
+        default:
+            return state;
+    }
+}
+
+export var ApiLoad = function(state = {isApiLoaded: true}, action) {
+    switch (action.type) {
+        case "ApiLoaded":
+            state = {...state}
+            state["isApiLoaded"] = false
+            return state;
+        default:
+            return state;
+    }
+}
 
 export var React = function( state = {React_Traning_Material: 10}, action) {
     // // state means here state of store i.e that object whihc contains data

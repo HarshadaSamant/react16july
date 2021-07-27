@@ -1,7 +1,7 @@
 import { createStore, combineReducers  } from "redux";
-import {React, Angular} from './Reducers';
+import {React, Angular, AuthReducer, ApiLoad} from './Reducers';
 
-var reducers = combineReducers({React, Angular})
+var reducers = combineReducers({React, Angular, AuthReducer, ApiLoad})
 
 var store = createStore(reducers)
 
