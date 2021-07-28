@@ -43,7 +43,8 @@ function Cake(props) {
                 <div className="card-body">
                     <h5 className="card-title">{props.data.name}</h5>
                     <p className="card-text">{props.data.price}</p>
-                    <button onClick={showDetails} className="btn btn-primary">Show details</button>
+                    <button onClick={showDetails} className="btn btn-secondary">Show details</button>
+                    {/* <button onClick={showDetails} className="btn btn-primary">Add to cart</button> */}
                 </div>
             </div>
          </div>

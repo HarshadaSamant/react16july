@@ -28,10 +28,10 @@ function Home(props) {
                 props.dispatch({
                     type: "ApiLoaded"
                 })
-                {props.cakesLoaded &&
-                alert("cake loaded")
+                // {props.cakesLoaded &&
+                // alert("cake loaded")
                 setCakes(response.data.data)
-                }
+                // }
                 setLoader(false)
             }, (error) => {
                 console.log("error from all cakes api : ", error)

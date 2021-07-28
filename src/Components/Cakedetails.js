@@ -32,6 +32,40 @@ function Cakedetails(props) {
         })
     }, []);
 
+    // let addToCart = (event) => {
+    //     event.preventDefault();
+    //     if(!localStorage.token) {
+    //         alert("Please login or register to view details")
+    //         // notify();
+            
+    //     } else {
+    //         // props.history.push("/cake/"+ props.data.cakeid)
+            
+    //     }
+    // }
+
+    let addToCart = (event) => {
+        let apiurl = process.env.REACT_APP_BASE_API + "/addcaketocart"
+        // let payload = { name: `${cakeDetails.name}`,cakeid : `${cakeDetails.cakeid}`,price : `${cakeDetails.price}`,weight : `${cakeDetails.weight}`,image : `${cakeDetails.image}`};
+        let payload = { name: `Molten chocolate cake`,cakeid : 1623224855198 ,price : 315 ,weight : 0.5,image : `lala.png`};
+        setLoader(true)
+        axios(
+            {
+                method: 'post',
+                url: apiurl,
+                payload
+            }
+        ).then((response) => {
+            alert("added to cart")
+            console.log("request sent from cake details api : " + JSON.stringify(response.data.data))
+            props.history.push("/cart")
+        }, (error) => {
+            alert("error while adding to cart")
+            setLoader(true)
+            console.log("error from cake details api : " + error)
+            setLoader(false)
+        })
+    };
 
     return(
         <div className="cake-details" style={{height:"100vh"}}>
@@ -72,7 +106,7 @@ function Cakedetails(props) {
             </div>
 
             <div className="cart-button" style={{margin: "40px auto"}}>
-                <button type="submit" className="btn btn-primary">Add to cart</button>
+                <button type="submit" className="btn btn-primary" onClick={addToCart}>Add to cart</button>
             </div>
         </div>
         </div>

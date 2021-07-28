@@ -30,6 +30,18 @@ export function Navbar(props){
       localStorage.clear()
       window.location.reload()
     }
+
+    let showCart = (event) => {
+      event.preventDefault();
+      if(!localStorage.token) {
+          alert("Please login or register to view details")
+          // notify();
+          
+      } else {
+          props.history.push("/cart")
+          console.log("props.token : " , props.token)
+      }
+  }
   
    return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,7 +76,7 @@ export function Navbar(props){
         </span> </form>}
 
         {props.isUserLoggedIn && <form className="d-flex"><span className="nav-item">
-          <Link className="nav-link" to="/cart">Cart</Link>
+          <a className="nav-link" onClick={showCart}>Cart</a>
         </span>
         <span className="nav-item">
           <Link className="nav-link" onClick={logout} to="/">Logout</Link>
@@ -80,6 +92,7 @@ Navbar = withRouter(Navbar)
 export default connect(function(state,props) {
   return {
     isUserLoggedIn :state["AuthReducer"]["isUserLoggedIn"],
-    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"]
+    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
+    token:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"]
   }
 })(Navbar)
