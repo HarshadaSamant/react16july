@@ -47,13 +47,13 @@ function Cakedetails(props) {
     let addToCart = (event) => {
         let apiurl = process.env.REACT_APP_BASE_API + "/addcaketocart"
         // let payload = { name: `${cakeDetails.name}`,cakeid : `${cakeDetails.cakeid}`,price : `${cakeDetails.price}`,weight : `${cakeDetails.weight}`,image : `${cakeDetails.image}`};
-        let payload = { name: `Molten chocolate cake`,cakeid : 1623224855198 ,price : 315 ,weight : 0.5,image : `lala.png`};
+        // let payload = { name: `Molten chocolate cake`,cakeid : 1623224855198 ,price : 315 ,weight : 0.5 ,image : `lala.png`};
         setLoader(true)
         axios(
             {
                 method: 'post',
                 url: apiurl,
-                payload
+                requestObject: { name: `Molten chocolate cake`,cakeid : 1623224855198 ,price : 315 ,weight : 0.5 ,image : `lala.png`}
             }
         ).then((response) => {
             alert("added to cart")

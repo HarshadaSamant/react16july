@@ -16,13 +16,8 @@ function Cake(props) {
 
     let showDetails = (event) => {
         event.preventDefault();
-        if(!localStorage.token) {
-            // alert("Please login or register to view details")
-            notify();
-            
-        } else {
-            props.history.push("/cake/"+ props.data.cakeid)
-        }
+        props.history.push("/cake/"+ props.data.cakeid)
+        
     }
 
     return(

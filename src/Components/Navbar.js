@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 export function Navbar(props){
     console.log("props in nav are : ", JSON.stringify(props));
     var [title, setTitle] = useState("Cake Gallery")
-    var [user, setUser] = useState({name:"Harshada", id:12345 , role:"Developer" , experience:"3 years" , salary:"Chindi"})
+    // var [user, setUser] = useState({name:"Harshada", id:12345 , role:"Developer" , experience:"3 years" , salary:"Chindi"})
 
     useEffect(()=>{
       console.log("useEffect here which will not be called due to empty array");
@@ -20,15 +20,27 @@ export function Navbar(props){
       console.log("useEffect here which will be called for title value update");
     }, [title])
 
-    function demo(event){
-      event.preventDefault()
-      var value = document.getElementById('searchinput').value
-      setTitle(value)
+    // function Search(event){
+    //   event.preventDefault()
+    //   var value = document.getElementById('searchinput').value
+    //   props.history.push(`/search/q=${value}`)
+    // }
+
+    var [searchText, setSearchText]=useState(undefined);
+    function search(ev){
+      ev.preventDefault();
+      if(searchText){
+        props.history.push(`/search?q=${searchText}`);
+      }
+    } 
+    function getSearchText(ev){
+      setSearchText(ev.target.value);
     }
 
     var logout = (event) => {
       localStorage.clear()
       window.location.reload()
+      props.history.push("/")
     }
 
     let showCart = (event) => {
@@ -62,9 +74,9 @@ export function Navbar(props){
         <input onChange={demo} value={user.id} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
         <input onChange={demo} value={user.role} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
         <input onChange={demo} value={user.salary} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> */}
-        <input onChange={demo} value={user.experience} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+        <input id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={getSearchText}/>
        
-        <button  className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
       </form>
 
@@ -79,7 +91,7 @@ export function Navbar(props){
           <a className="nav-link" onClick={showCart}>Cart</a>
         </span>
         <span className="nav-item">
-          <Link className="nav-link" onClick={logout} to="/">Logout</Link>
+          <Link className="nav-link" onClick={logout}>Logout</Link>
         </span> </form>}
 
     </div>

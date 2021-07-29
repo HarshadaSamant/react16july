@@ -6,6 +6,7 @@ import Cake from './Components/Cake';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Cart from './Components/Cart';
+import Search from './Components/Search';
 import Loader from 'react-loader-spinner';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Pagenotfound from './Components/Pagenotfound';
@@ -52,6 +53,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} ><Login loggedIn={loggedIn} /></Route>
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/search" component={Search} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/cake/:cakeid" component ={Cakedetails} />
         <Route exact path="**" component={Pagenotfound} />
