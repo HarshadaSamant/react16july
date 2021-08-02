@@ -6,6 +6,7 @@ export var AuthReducer = function(state = {isUserLoggedIn: localStorage.token ? 
             state = {...state}
             state["isUserLoggedIn"] = true
             state["user"] = action.payload
+            state["token"] = action.token
             return state;
         default:
             return state;
@@ -18,6 +19,18 @@ export var ApiLoad = function(state = {isApiLoaded: true}, action) {
             state = {...state}
             state["isApiLoaded"] = false
             return state;
+        default:
+            return state;
+    }
+}
+
+export var CartCount = function(state = {CurrentCartCount: 0}, action) {
+    switch (action.type) {
+        case "addCartCount": {
+            state = {...state}
+            state["count"] = action.count
+            return state
+        }
         default:
             return state;
     }

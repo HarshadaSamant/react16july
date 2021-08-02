@@ -1,18 +1,47 @@
+.LoaderBackground {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-image: url('../../../src/cake_bg.jpeg');
+}
+
+.LoaderBackground:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 2555, 0.5);
+}
+
+.LoaderText {
+  color: #332222;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 60px;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  z-index: 99;
+}
 
 .Loader,
 .Loader:before,
 .Loader:after {
-  background: #ae7a7a;
+  background: #332222;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
 .Loader {
-  color: #ae7a7a;
+  color: #332222;
   text-indent: -9999em;
   margin: 88px auto;
-  position: relative;
   font-size: 11px;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -23,6 +52,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 .Loader:before,
 .Loader:after {

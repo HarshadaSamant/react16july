@@ -48,33 +48,26 @@ class Signup extends PureComponent{
     render(){
        
         return (
-            <div style={{width:"50%" , margin:"auto"}}>
-                {this.state.loading}
-               {this.state.loading &&  <Loader
-            type="ThreeDots"
-            color="#00BFFF"
-            height={100}
-            width={100}
-          />}
-                <form>
-                <h1>Signup Here</h1>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Name</label>
-                    <input onChange={this.handleName} type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input onChange={this.handleEmail} type="email" className="form-control"  aria-describedby="emailHelp" placeholder="Enter email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input onChange={this.handlePassword} type="password" className="form-control"  placeholder="Password" />
-                </div>
-                <div>
-                <label className="errormessage">{this.state.errorMessage}</label>
-                <button style={{float:"right"}} onClick={this.signup} type="submit" className="btn btn-primary">Signup</button>
-                </div>
+            <div style={{width:"100%", height:"calc(100% - 56px)", margin:"auto", background: "url(./././cake_bg.jpeg) no-repeat", backgroundSize:"100% 100%"}}>
+                <form className="signupform" onSubmit={this.signup}>
+                    <h1>Signup Here</h1>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Name</label>
+                        <input onChange={this.handleName} type="text" className="form-control" aria-describedby="nameHelp" placeholder="Enter Name" required/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input onChange={this.handleEmail} type="email" className="form-control"  aria-describedby="emailHelp" placeholder="Enter email" required/>
+                        <small id="emailHelp" className="form-text">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input onChange={this.handlePassword} type="password" className="form-control"  placeholder="Password" required/>
+                    </div>
+                    <div>
+                        <label className="errormessage">{this.state.errorMessage}</label>
+                        <button style={{float:"right"}}  type="submit" className="btn action-button">Signup</button>
+                    </div>
                 </form>
             </div>
         )

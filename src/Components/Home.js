@@ -46,10 +46,11 @@ function Home(props) {
             
             {loader ? <Spinner /> : '' }
             <Carousel />
-            <h1 style={{fontSize:"24px", margin:"20px 0"}}>
-                Cakes for all occasions
-            </h1>
-
+            <div style={{textAlign: "center"}}>
+                <h1 style={{fontSize:"24px"}} className="fancy_border">
+                    Cakes for all occasions
+                </h1>
+            </div>
             <div className="row">
                 {cakes.map((each, index) => {
                     return <Cake key={index} data={each} />

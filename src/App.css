@@ -1,3 +1,187 @@
+html, body {
+  height: 100%;
+}
+.checkout {
+  border-top: 1px solid #000;
+  padding: 30px 0;
+  margin: 20px 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.checkout .total-label,
+.checkout .total-amount {
+  font-weight: 700;
+  font-size: 40px;
+}
+.checkout .total-amount {
+  font-weight: 500 !important;
+}
+.cartWrapper {
+  padding: 30px 20px;
+}
+.cartDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cartCakeName {
+  font-size: 18px;
+  font-weight: 700;
+}
+.cartTable td, .cartTable th{
+  vertical-align: middle;
+  text-align: center;
+}
+.cartImage {
+  width: 200px;
+  height: 200px;
+}
+
+.cartWrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+.cartValue {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #00000045;
+  position: absolute;
+  right: -19px;
+  top: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-button {
+  position: relative;
+  padding: 7px 35px;
+  margin: 0 10px;
+  box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  -webkit-box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  -moz-box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  background: -webkit-linear-gradient(#e209d0, #5258e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.action-button:hover {
+  color: #fff;
+  background-image: -webkit-linear-gradient(#e209d0, #5258e0);
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #fff;
+}
+
+.action-button.search {
+  border: 1px solid #33086785;
+}
+
+.action-link {
+  color: #33086785;
+}
+
+.cake-button {
+  border: 1px solid #000;
+  padding: 7px 35px;
+}
+
+.cake-button span {
+  position: relative;
+}
+
+.cake-button span::before {
+  content: "";
+  display: none;
+}
+
+.cake-button:hover span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: -29px;
+  background: url("./cake_icon.png") no-repeat;
+  background-size: 25px;
+}
+
+.cakeList .card {
+  box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  -webkit-box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  -moz-box-shadow: 0px 0px 24px 2px rgba(182,174,174,0.75);
+  border: none !important;
+}
+
+.loginform, .signupform {
+  /* background-color: #fff; */
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  box-shadow: -2px 0px 44px 0px rgba(128,128,128,0.75);
+-webkit-box-shadow: -2px 0px 44px 0px rgba(128,128,128,0.75);
+-moz-box-shadow: -2px 0px 44px 0px rgba(128,128,128,0.75);
+}
+
+.loginform > *, .signupform > *{
+  color: #fff;
+}
+
+.loginform .btn-link, .signupform .btn-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.loginform .action-button,
+.signupform .action-button {
+  -webkit-text-fill-color: #fff;
+  border: 1px solid #fff;
+}
+
+.fancy_border {
+  position: relative;
+  display: inline-block;
+  min-width: 401px;
+  font-size: 40px !important;
+  padding: 20px 0;
+  margin: 50px 0;
+}
+
+.fancy_border:before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  display: block;
+  background: url(./border1.png) no-repeat;
+  background-size: 100%;
+  height: 100%;
+  bottom: 100%;
+  right: 50%;
+  transform: rotate(180deg) translateX(-50%);
+}
+
+.fancy_border:after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  display: block;
+  background: url(./border1.png) no-repeat;
+  background-size: 100%;
+  height: 100%;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .App {
   text-align: center;
 }

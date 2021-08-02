@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 export function Navbar(props){
     console.log("props in nav are : ", JSON.stringify(props));
     var [title, setTitle] = useState("Cake Gallery")
+    var cartCount = props.cartCount;
     // var [user, setUser] = useState({name:"Harshada", id:12345 , role:"Developer" , experience:"3 years" , salary:"Chindi"})
 
     useEffect(()=>{
@@ -38,17 +39,17 @@ export function Navbar(props){
     }
 
     var logout = (event) => {
+      props.history.push("/")
       localStorage.clear()
       window.location.reload()
-      props.history.push("/")
+      
     }
 
     let showCart = (event) => {
       event.preventDefault();
-      if(!localStorage.token) {
+      if(!props.isUserLoggedIn) {
           alert("Please login or register to view details")
-          // notify();
-          
+          props.history.push("/login")
       } else {
           props.history.push("/cart")
           console.log("props.token : " , props.token)
@@ -56,8 +57,8 @@ export function Navbar(props){
   }
   
    return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-<a className="navbar-brand" href="#">Welcome {props.name} {title}</a>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+<a className="navbar-brand action-link" href="#">Welcome to {title}</a>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -65,33 +66,29 @@ export function Navbar(props){
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-          <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+          <Link className="nav-link action-button" to="/">Home <span className="sr-only">(current)</span></Link>
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">
-        {/* <input onChange={demo} value={title} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <input onChange={demo} value={user.name} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <input onChange={demo} value={user.id} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <input onChange={demo} value={user.role} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <input onChange={demo} value={user.salary} id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> */}
-        <input id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={getSearchText}/>
+        <input id="searchinput" className="form-control mr-sm-2" type="search" placeholder="Search cake" aria-label="Search" onChange={getSearchText}/>
        
-        <button onClick={search} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button onClick={search} className="btn action-button search my-2 my-sm-0" type="submit">Search</button>
 
       </form>
 
       {!props.isUserLoggedIn && <form className="d-flex"><span className="nav-item">
-          <Link className="nav-link" to="/login">Login</Link>
+          <Link className="nav-link action-button" to="/login">Login</Link>
         </span>
         <span className="nav-item">
-          <Link className="nav-link" to="/signup">Signup</Link>
+          <Link className="nav-link action-button" to="/signup">Signup</Link>
         </span> </form>}
 
-        {props.isUserLoggedIn && <form className="d-flex"><span className="nav-item">
-          <a className="nav-link" onClick={showCart}>Cart</a>
+        {props.isUserLoggedIn && <form className="d-flex"><span className="nav-item" style={{position: "relative", marginRight:"30px"}}>
+          <a className="nav-link action-button" onClick={showCart}>Cart</a>
+          <span className="cartValue">{props.cartCount}</span>
         </span>
         <span className="nav-item">
-          <Link className="nav-link" onClick={logout}>Logout</Link>
+          <Link className="nav-link action-button" onClick={logout}>Logout</Link>
         </span> </form>}
 
     </div>
@@ -105,6 +102,7 @@ export default connect(function(state,props) {
   return {
     isUserLoggedIn :state["AuthReducer"]["isUserLoggedIn"],
     name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
-    token:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"]
+    token:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
+    cartCount: state["CartCount"]["count"]
   }
 })(Navbar)
