@@ -6,6 +6,8 @@ import Spinner from '../Components/Spinner/Spinner';
 import Ratings from "./Ratings";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AddToCartthunk } from "../ReduxStore/thunks";
+import { Link } from "react-router-dom"
 
 function Cakedetails(props) {
 
@@ -56,7 +58,7 @@ function Cakedetails(props) {
             console.log("response from cake details api : " + JSON.stringify(response.data.data))
             setCakeDetails(response.data.data)
             setIngredients(response.data.data.ingredients)
-            console.log("cakeDetails are : " + JSON.stringify(cakeDetails))
+            // console.log("cakeDetails are : " + JSON.stringify(cakeDetails))
             setLoader(false)
         }, (error) => {
             setLoader(true)
@@ -65,40 +67,56 @@ function Cakedetails(props) {
         })
     }, []);
 
-    let addToCart = (event) => {
-        let apiurl = process.env.REACT_APP_BASE_API + "/addcaketocart"
-        // let payload = { name: `${cakeDetails.name}`,cakeid : `${cakeDetails.cakeid}`,price : `${cakeDetails.price}`,weight : `${cakeDetails.weight}`,image : `${cakeDetails.image}`};
-        // let payload = { name: `Molten chocolate cake`,cakeid : 1623224855198 ,price : 315 ,weight : 0.5 ,image : `https://res.cloudinary.com/ashudev/image/upload/v1623732886/x2jlf6ix8vqo5q0wnxjr.jpg`};
-        setLoader(true)
-        console.log("cakeDetails : " , cakeDetails)
-        // if(props.isUserLoggedIn) {
-            axios(
-                {
-                    url: apiurl,
-                    headers: {
-                        authtoken: props.token,
-                    },
-                    method: "post",
-                    data: { name: `${cakeDetails.name}`,cakeid : `${cakeDetails.cakeid}` ,price : `${cakeDetails.price}` ,weight : `${cakeDetails.weight}` ,image : `${cakeDetails.image}`},
-                }
-            ).then((response) => {
-                // alert("added to cart")
-                notifySucess();
-                console.log("request sent from cake details api : " + JSON.stringify(response.data.data))
-                props.history.push("/cart")
-            }, (error) => {
-                // alert("error while adding to cart")
-                notifyError();
-                console.log("error from cake details api : " + error)
-                setLoader(false)
-            })
-        // } 
-        // else {
-        //     // alert("Please login or register to add cake to cart")
-            // notify();
-            // setLoader(false)
+    // let addToCart = (event) => {
+    //     let apiurl = process.env.REACT_APP_BASE_API + "/addcaketocart"
+    //     setLoader(true)
+    //     // console.log("cakeDetails : " , cakeDetails)
+    //         axios(
+    //             {
+    //                 url: apiurl,
+    //                 headers: {
+    //                     authtoken: props.token,
+    //                 },
+    //                 method: "post",
+    //                 data: { name: `${cakeDetails.name}`,cakeid : `${cakeDetails.cakeid}` ,price : `${cakeDetails.price}` ,weight : `${cakeDetails.weight}` ,image : `${cakeDetails.image}`},
+    //             }
+    //         ).then((response) => {
+    //             // alert("added to cart")
+    //             notifySucess();
+    //             console.log("request sent from cake details api : " + JSON.stringify(response.data.data))
+    //             props.history.push("/cart")
+    //         }, (error) => {
+    //             // alert("error while adding to cart")
+    //             notifyError();
+    //             console.log("error from cake details api : " + error)
+    //             setLoader(false)
+    //         })
+    //     // } 
+    //     // else {
+    //     //     // alert("Please login or register to add cake to cart")
+    //         // notify();
+    //         // setLoader(false)
+    //     // }
+    // };
+
+    function addToCart() {
+        var cakeData = {
+          name :cakeDetails.name,
+          cakeid :cakeDetails.cakeid,
+          price :cakeDetails.price,
+          weight :cakeDetails.weight,
+          image :cakeDetails.image
+        } 
+        // if (localStorage.token == true) {
+          props.dispatch(AddToCartthunk(cakeData));
+        //   alert("AddToCartthunk")
+        // } else {
+        //   if (window.confirm("You must login to continue....!!")) {
+        //     props.history.push("/login");
+        //   }
         // }
-    };
+      }
+
 
     return(
         <div className="cake-details" style={{height:"calc(100% - 56px)"}}>
@@ -140,7 +158,8 @@ function Cakedetails(props) {
             </div>
 
             <div className="cart-button" style={{margin: "40px auto"}}>
-                <button type="submit" className="btn btn-primary" onClick={addToCart}>Add to cart</button>
+                <button type="submit" className="btn action-button mr-4" onClick={addToCart}>Add to cart</button>
+                <Link type="submit" className="btn action-button" to="/cart">Go to cart</Link>
             </div>
         </div>
         </div>

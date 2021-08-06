@@ -4,6 +4,7 @@ import axios from "axios"
 import { connect } from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Loginthunk } from "../ReduxStore/thunks"
 
 class Login extends Component{
 
@@ -35,28 +36,30 @@ class Login extends Component{
        }
     login = (event)=>{
         let apiurl =  "https://apifromashu.herokuapp.com/api/login"
-        axios({
-            method:"post",
-            url: apiurl,
-            data: this.user
-        }).then((response) => {
-            console.log("response from login api", response);
-            if(response.data.token) {
-                this.props.dispatch({
-                    type: "Login",
-                    payload: response.data,
-                    token: response.data.token
-                })
-                // alert(response.data.token)
-                localStorage.token = response.data.token;
-                this.props.history.push("/");
-            } else {
-                // alert("Invalid credentials");
-                this.notifyError();
-            }
-        }, (error) => {
-            console.log("error from login api", error)
-        })
+        this.props.dispatch(Loginthunk(this.user));
+        this.props.history.push("/");
+        // axios({
+        //     method:"post",
+        //     url: apiurl,
+        //     data: this.user
+        // }).then((response) => {
+        //     console.log("response from login api", response);
+        //     if(response.data.token) {
+        //         this.props.dispatch({
+        //             type: "Login",
+        //             payload: response.data,
+        //             token: response.data.token
+        //         })
+        //         // alert(response.data.token)
+        //         localStorage.token = response.data.token;
+        //         this.props.history.push("/");
+        //     } else {
+        //         // alert("Invalid credentials");
+        //         this.notifyError();
+        //     }
+        // }, (error) => {
+        //     console.log("error from login api", error)
+        // })
         console.log("User name: ", this.user)
        event.preventDefault()
     }
@@ -74,7 +77,7 @@ class Login extends Component{
         }, (error) => {
             console.log("error from forget api", error)
         })
-        console.log("User name: ", this.user)
+        // console.log("User name: ", this.user)
        event.preventDefault()
     }
 
@@ -111,5 +114,15 @@ class Login extends Component{
     }
 }
 
+// Login = withRouter(Login)
+// export default connect() (Login)
+
 Login = withRouter(Login)
-export default connect() (Login)
+export default connect(function(state,props) {
+  return {
+    isUserLoggedIn :state["AuthReducer"]["isUserLoggedIn"],
+    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
+    token:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
+  }
+})(Login)
+

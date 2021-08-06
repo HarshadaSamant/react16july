@@ -1,31 +1,34 @@
 import {useState , useEffect} from "react"
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux"
-
+import {
+  FetchCartthunk
+} from "../ReduxStore/thunks";
 
 export function Navbar(props){
-    console.log("props in nav are : ", JSON.stringify(props));
+    // console.log("props in nav are : ", JSON.stringify(props));
     var [title, setTitle] = useState("Cake Gallery")
     var cartCount = props.cartCount;
     // var [user, setUser] = useState({name:"Harshada", id:12345 , role:"Developer" , experience:"3 years" , salary:"Chindi"})
 
     useEffect(()=>{
-      console.log("useEffect here which will not be called due to empty array");
+      // console.log("useEffect here which will not be called due to empty array");
     },[])
 
     useEffect(()=>{
-      console.log("useEffect here which will be called for every value update");
+      // console.log("useEffect here which will be called for every value update");
     })
 
     useEffect(()=>{
-      console.log("useEffect here which will be called for title value update");
+      // console.log("useEffect here which will be called for title value update");
     }, [title])
 
-    // function Search(event){
-    //   event.preventDefault()
-    //   var value = document.getElementById('searchinput').value
-    //   props.history.push(`/search/q=${value}`)
-    // }
+    useEffect(() => {
+      if (localStorage.token) {
+          props.dispatch(FetchCartthunk());
+      }
+    }, [localStorage.token]);
+
 
     var [searchText, setSearchText]=useState(undefined);
     function search(ev){
@@ -52,7 +55,7 @@ export function Navbar(props){
           props.history.push("/login")
       } else {
           props.history.push("/cart")
-          console.log("props.token : " , props.token)
+          // console.log("props.token : " , props.token)
       }
   }
   
@@ -103,6 +106,6 @@ export default connect(function(state,props) {
     isUserLoggedIn :state["AuthReducer"]["isUserLoggedIn"],
     name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
     token:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
-    cartCount: state["CartCount"]["count"]
+    cartCount: state["CartReducer"]["carttotal"]
   }
 })(Navbar)

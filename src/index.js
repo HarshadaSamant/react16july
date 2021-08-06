@@ -7,6 +7,15 @@ import reportWebVitals from './reportWebVitals';
 import "./ReduxStore/Store";
 import myStore from "./ReduxStore/Store";
 import { Provider } from 'react-redux';
+import axios from 'axios';
+
+export var requestFunction = axios.create()
+
+requestFunction.interceptors.request.use((request)=>{
+  // alert("request")
+  request.headers["authtoken"] = localStorage.token
+  return request
+})
 
 ReactDOM.render(
   <Provider store={myStore}>

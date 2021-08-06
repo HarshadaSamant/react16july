@@ -70,7 +70,8 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 
-.action-button:hover {
+.action-button:hover,
+.action-button-primary {
   color: #fff;
   background-image: -webkit-linear-gradient(#e209d0, #5258e0);
   -webkit-background-clip: unset;

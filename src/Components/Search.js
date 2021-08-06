@@ -9,13 +9,13 @@ import Spinner from '../Components/Spinner/Spinner';
 function Search(props){
   var [loader, setLoader] = useState(false);
 
-  console.log(">>>>>>>>>>>>>>>>>props" , props)
+  // console.log(">>>>>>>>>>>>>>>>>props" , props)
   let query=queryString.parse(props.location.search);
     let [cakeResults, setCakeResults]=useState([]);
     useEffect(()=>{
         setLoader(true)
         let apiurl="https://apifromashu.herokuapp.com/api/searchcakes?q="+query.q;
-        console.log(query);
+        // console.log(query);
         axios({
             method: "get",
             url: apiurl

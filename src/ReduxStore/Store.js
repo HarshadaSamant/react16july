@@ -1,16 +1,23 @@
-import { createStore, combineReducers  } from "redux";
-import {React, Angular, AuthReducer, ApiLoad, CartCount} from './Reducers';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import {React, Angular, AuthReducer, ApiLoad, CartReducer, OrderReducer} from './Reducers';
+import thunk from "redux-thunk"
+import createSaga from "redux-saga"
+// import RootSaga from "./sagas";
 
-var reducers = combineReducers({React, Angular, AuthReducer, ApiLoad, CartCount})
+// var sagaMiddleware = createSaga();
 
-var store = createStore(reducers)
+var reducers = combineReducers({React, Angular, AuthReducer, ApiLoad, CartReducer, OrderReducer})
+
+var store = createStore(reducers, applyMiddleware( thunk))
+
+// sagaMiddleware.run(RootSaga);
 
 // dispatch function passes two arguments 1. type and 2.action to reducers.
 
 // this will watch for action requests
-store.subscribe(() => {
-    console.log("I will be called everytime store altered", store.getState())
-})
+// store.subscribe(() => {
+//     console.log("I will be called everytime store altered", store.getState())
+// })
 
 // action which requests for books for eact angular and react
 store.dispatch({
@@ -31,7 +38,7 @@ store.dispatch({
 // getState will return current state of store(object)
 var storeData = store.getState();
 
-console.log(storeData);
+// console.log(storeData);
 
 
 

@@ -17,6 +17,7 @@ import Auth from './Components/Auth';
 // As redux is a standalone library we need to just import it to use it.
 // import "./ReduxStore/Store";
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
+import Order from './Components/Order';
 
 function App() {
   const[isAutheticated, setisAutheticated] = useState(true);
@@ -41,8 +42,9 @@ function App() {
         <Route exact path="/login" component={Login} ><Login loggedIn={loggedIn} /></Route>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/search" component={Search} />
-            <Route exact path="/cart" component={Cart} />
-        {/* <Route path="/cart" component={Auth} redirect={Cart} /> */}
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/order" component={Order} />
+        {/* <Route path="/cart" component={Auth} ><Auth component={Cart}></Auth></Route> */}
         <Route exact path="/cake/:cakeid" component ={Cakedetails} />
         <Route exact path="**" component={Pagenotfound} />
       </Switch>

@@ -9,7 +9,7 @@ import { withRouter } from "react-router";
 function Home(props) {
     
 
-    console.log("Props in home are: " + JSON.stringify(props));
+    // console.log("Props in home are: " + JSON.stringify(props));
 
     var [cakes, setCakes] = useState([])
     var [loader, setLoader] = useState(false);

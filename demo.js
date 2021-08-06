@@ -4,7 +4,7 @@ console.log("..............")
 }
 
 function getData(...xyz){  // rest operator 
-console.log(">>>>>>>>>>>>>>>>>>>>>>>>>" , xyz)
+// console.log(">>>>>>>>>>>>>>>>>>>>>>>>>" , xyz)
 }
 
 
