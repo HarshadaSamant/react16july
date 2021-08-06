@@ -18,6 +18,10 @@ import {
 
 function Cart(props) {
 
+    // var [quantity, setQuanity] = useState([0]);
+
+    const [rerender, setRerender] = useState(false);
+
     useEffect(() => {
         if (localStorage.token) {
           props.dispatch(FetchCartthunk());
@@ -28,13 +32,23 @@ function Cart(props) {
         }
       }, []);
 
-    if(props.history.action === "POP") {
-        props.history.push("/")
-    }
+
+      
+    
+
+    // if(props.history.action === "POP") {
+    //     props.history.push("/")
+    // }
 
     var total = 0;
 
+    // useEffect(()=>{
+    //     setRerender(!rerender);
+    // }, [quantity]);
+    // alert("quantity : " + quantity)
+
     const addOneCake = (id,cakeid) => {
+        
         const newitemlist = props.cartData.filter((cake) => {
           return Object.values(cake).join(" ").includes(cakeid);
         });
@@ -46,11 +60,19 @@ function Cart(props) {
           weight: newitemlist[0].weight,
           image: newitemlist[0].image,
         };
-
+        
+        // alert([...quantity])
         // console.log("????", datacake);
-        props.dispatch(AddToCartthunk(datacake));
-        // props.history.push("/cart");
+        props.dispatch(
+            AddToCartthunk(datacake)    
+        )
       }
+
+    //   useEffect(() => {
+    //     if(props.loader) {
+    //         props.dispatch(FetchCartthunk());
+    //     }
+    //   }, [props.loader]);
 
     const removeOneCake = (id,cakeid) => {
         const newitemlist = props.cartData.filter((cake) => {
@@ -99,12 +121,13 @@ function Cart(props) {
 
         // console.log("datacake ???? ", datacake);
         props.dispatch(Orderthunk(datacake));
-
     };
 
     // {props.itemremoved || props.itemadded && notifySuccessTrigger() }
 
     console.log("props.cartData in cart: ", props.cartData)
+
+    
 
     return(
         <div className="cartWrapper">
@@ -136,7 +159,10 @@ function Cart(props) {
                                             </span>
                                         </td>
                                         <td>
-                                            <button type="button" onClick={() => addOneCake(index, each.cakeid, each.quantity)}>+</button>
+                                            <button type="button" onClick={() => {
+                                                    // setQuanity([...quantity + 1])
+                                                    addOneCake(index, each.cakeid, each.quantity)
+                                                }}>+</button>
                                             <span style={{margin:"0 10px"}}>{each.quantity}</span>
                                             <button type="button" onClick={() => removeOneCake(index, each.cakeid, each.quantity)}>-</button>
                                         </td>

@@ -72,12 +72,12 @@ switch (action.type) {
     return state
     }
     case "ADD_TO_CART_SUCCESS": {
-    state = {...state }
-    state["isloading"] = false
-    state["addcartresponse"] = action.payload
-    state["itemadded"] = true
-    alert("Item added to cart")
-    return state
+        state = {...state }
+        state["isloading"] = false
+        state["addcartresponse"] = action.payload
+        state["itemadded"] = true
+        alert("Item added to cart")
+        return state
     }
     case "ADD_TO_CART_FAILURE": {
     state = { ...state }

@@ -59,7 +59,7 @@ export function AddToCartthunk(data) {
           type: "ADD_TO_CART_SUCCESS",
           payload: result.data,
         });
-        // notifySucess();
+        dispatch(FetchCartthunk());
       } else {
         dispatch({
           type: "ADD_TO_CART_FAILURE",
@@ -84,6 +84,7 @@ return async (dispatch) => {
         type: "REMOVE_FROM_CART_SUCCESS",
         payload: result.data,
     });
+    dispatch(FetchCartthunk());
     } else {
     dispatch({
         type: "REMOVE_FROM_CART_FAILURE",
@@ -107,6 +108,7 @@ export function Removefromcartthunk(data) {
             type: "REMOVE_FROM_CART_SUCCESS",
             payload: result.data,
         });
+        dispatch(FetchCartthunk());
         } else {
         dispatch({
             type: "REMOVE_FROM_CART_FAILURE",
@@ -129,10 +131,10 @@ export function FetchCartthunk() {
             },
         });
         if (result) {
-        dispatch({
-            type: "CART_SUCCESS",
-            payload: result.data.data,
-        });
+            dispatch({
+                type: "CART_SUCCESS",
+                payload: result.data.data,
+            });
         // alert("Cart fetched")
         } else {
         dispatch({
