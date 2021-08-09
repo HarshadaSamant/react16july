@@ -3,7 +3,7 @@ import Loader from "react-loader-spinner";
 import axios from "axios";
 
 
-class Signup extends PureComponent{
+class Signup extends PureComponent {
     constructor(){
         super()
         // initialising the state
@@ -64,6 +64,18 @@ class Signup extends PureComponent{
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input onChange={this.handlePassword} type="password" className="form-control"  placeholder="Password" required/>
                     </div>
+                    {/* <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div> */}
                     <div>
                         <label className="errormessage">{this.state.errorMessage}</label>
                         <button style={{float:"right"}}  type="submit" className="btn action-button">Signup</button>

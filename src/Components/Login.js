@@ -38,28 +38,6 @@ class Login extends Component{
         let apiurl =  "https://apifromashu.herokuapp.com/api/login"
         this.props.dispatch(Loginthunk(this.user));
         this.props.history.push("/");
-        // axios({
-        //     method:"post",
-        //     url: apiurl,
-        //     data: this.user
-        // }).then((response) => {
-        //     console.log("response from login api", response);
-        //     if(response.data.token) {
-        //         this.props.dispatch({
-        //             type: "Login",
-        //             payload: response.data,
-        //             token: response.data.token
-        //         })
-        //         // alert(response.data.token)
-        //         localStorage.token = response.data.token;
-        //         this.props.history.push("/");
-        //     } else {
-        //         // alert("Invalid credentials");
-        //         this.notifyError();
-        //     }
-        // }, (error) => {
-        //     console.log("error from login api", error)
-        // })
         console.log("User name: ", this.user)
        event.preventDefault()
     }

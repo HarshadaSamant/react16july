@@ -27,8 +27,8 @@ function Cart(props) {
           props.dispatch(FetchCartthunk());
         } 
         else {
-          alert("Please login to Continue");
-          props.history.push("/login");
+            props.history.push("/login");
+            alert("Please login to Continue");
         }
       }, []);
 
@@ -36,16 +36,11 @@ function Cart(props) {
       
     
 
-    // if(props.history.action === "POP") {
-    //     props.history.push("/")
-    // }
+    if(props.history.action === "POP") {
+        props.history.push("/")
+    }
 
     var total = 0;
-
-    // useEffect(()=>{
-    //     setRerender(!rerender);
-    // }, [quantity]);
-    // alert("quantity : " + quantity)
 
     const addOneCake = (id,cakeid) => {
         
@@ -67,12 +62,6 @@ function Cart(props) {
             AddToCartthunk(datacake)    
         )
       }
-
-    //   useEffect(() => {
-    //     if(props.loader) {
-    //         props.dispatch(FetchCartthunk());
-    //     }
-    //   }, [props.loader]);
 
     const removeOneCake = (id,cakeid) => {
         const newitemlist = props.cartData.filter((cake) => {
